@@ -12,8 +12,7 @@ clock = pygame.time.Clock()
 running = True
 
 player = Player()
-population = Population(20)
-goal = pygame.draw.circle(pygame.Surface((20, 20)), 'white', (0, 0), 4)
+population = Population(500)
 
 while running: 
   for event in pygame.event.get():
@@ -22,8 +21,14 @@ while running:
   
   screen.fill("black")
 
+  pygame.draw.rect(screen, 'green', pygame.Rect(0, 50, WIDTH, 20))
+
   for player in population.population:
     screen.blit(player.surface, player.pos)
+    if player.brain.step == 1000:
+      # create new generation after natural selection    
+      pass  
+
     player.move()
 
 

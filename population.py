@@ -6,6 +6,16 @@ class Population:
       self.population = Population.generate(size)
       self.size = size
 
+    def natural_selection(self):
+      # get top players 
+      top_performers = sorted([(player, player.fitness([0, 50])) for player in self.population], key=lambda x: x[1], reverse=True)[:10]
+      return top_performers
+    
+    # clone N best performing players
+    def clone(self):
+      # get 10 best players according to their distance to goal
+      pass
+      
     @staticmethod
     def generate(size: int) -> List[Player]:
       population = []
@@ -14,7 +24,3 @@ class Population:
       
       return population
     
-    # clone N best performing players
-    def clone():
-      # get 10 best players according to their distance to goal
-      pass

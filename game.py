@@ -12,7 +12,14 @@ clock = pygame.time.Clock()
 running = True
 
 player = Player()
-population = Population(500)
+population = Population(1000)
+generations = [population]
+
+### STEPS OF EVOLUTION
+# NAUTRAL SELECTION
+# REPRODUCTION OF TOP PERFORMERS
+# SMALL GENETIC MUTATION
+# RINSE AND REPEAT FOR HELLA GENERATIONS
 
 while running: 
   for event in pygame.event.get():
@@ -22,13 +29,18 @@ while running:
   screen.fill("black")
 
   pygame.draw.rect(screen, 'green', pygame.Rect(0, 50, WIDTH, 20))
+  
+  curr_gen = generations[-1]
 
-  for player in population.population:
+  if curr_gen.isGenerationDone():
+    print("generation finished")
+    new_gen = curr_gen.clone()
+    generations.append(new_gen)
+    # print(new_gen.population)
+    # create new generation
+
+  for player in curr_gen.population:
     screen.blit(player.surface, player.pos)
-    if player.brain.step == 1000:
-      # create new generation after natural selection    
-      pass  
-
     player.move()
 
 

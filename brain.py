@@ -14,6 +14,7 @@ class Brain:
     
     for direction in self.directions:
       rand = random.random()
+
       if rand < MUTATION_RATE:
         rotatedV = direction.rotate_rad(random.uniform(0, 2*pi)).normalize()
         directions.append(rotatedV)
